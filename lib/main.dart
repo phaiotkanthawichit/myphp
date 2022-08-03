@@ -7,7 +7,19 @@ class AddItemPage extends StatefulWidget {
   }
 }
 
-class AddItemPageState extends State<AddItemPage> {
+class AddItemPageState extends State<AddItemPage>
+ {
+  TextEditingController NameController;
+  String Response = "NULL";
+  createItem() anync {
+    const url = "https://www.57ans.com/flutterphp/index.php";
+    var result = await http.get(url);
+    setState(() {
+      this.response = result.body;
+    });
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,8 +28,18 @@ class AddItemPageState extends State<AddItemPage> {
       ),
       body: Column(
         children: <Widget>[
-          Text("Hello"),
+          TextField(
+            decoration: InputDecoration(
+              labelText: "Name"
+             ),
+          ),
+        ElevatedButton(
+          onPressed: createItem,
+           child: Text("Create"),
+          ),
+          Text(Thisresponse),
         ],
+
       ),
     );
   }
